@@ -1,19 +1,19 @@
-import express from 'express';
-import {ApolloServer} from '@apollo/server';
-import {expressMiddleware} from '@apollo/server/express4';
-import {typeDefs, resolvers} from './schemas'
-import db from './config/connection';
-import cors from 'cors';
-import { authMiddleware } from './utils/auth';
-import http from 'http';
+const express = require('express');
+const { ApolloServer } = require('@apollo/server');
+const { expressMiddleware } = require('@apollo/server/espress4');
+const { typeDefs, resolvers } = require('./schemas');
+const db = require('./config/connection');
+const cors = require('cors');
+const { authMiddleware } = require('./utils/auth');
+const http = require('http');
 
 const app = express();
 httpServer = http.createServer(app);
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({httpServer})]
-});
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  });
 const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
