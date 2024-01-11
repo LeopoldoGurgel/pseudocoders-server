@@ -26,10 +26,6 @@ const startServer = async () => {
         res.send('Welcome to my GraphQL server!');
     });
 
-    app.get('/', (req, res) => {
-        res.send('Welcome to my GraphQL server!');
-    });      
-
     server.applyMiddleware({app, path: '/graphql'});
 
     db.on('error', console.error.bind(console, "MongoDB connection error: "))
