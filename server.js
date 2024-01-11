@@ -19,7 +19,7 @@ const startServer = async () => {
     app.use(cors());
 
     app.get('/', (req, res) => {
-        res.send('Welcome to my GraphQL server!');
+        res.send('O pai ta on, Jorgim!');
     });
 
     app.get('/favicon.ico', (req, res) => {
