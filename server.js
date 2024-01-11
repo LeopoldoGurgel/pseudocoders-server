@@ -13,6 +13,8 @@ httpServer = http.createServer(app);
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    playground: true, 
+    introspection: true,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 const PORT = process.env.PORT || 3000;
