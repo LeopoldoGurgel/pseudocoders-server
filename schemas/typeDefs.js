@@ -1,5 +1,6 @@
 const typeDefs = `
 
+
   type User {
     _id: ID!
     name: String!
