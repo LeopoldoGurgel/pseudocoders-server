@@ -13,8 +13,6 @@ httpServer = http.createServer(app);
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    playground: true, 
-    introspection: true,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 const PORT = process.env.PORT || 3000;
@@ -33,7 +31,7 @@ const startServer = async () => {
         );
 
     app.get('/', (req, res) => {
-        res.send('O pai ta on, Jorgim!');
+        res.send('O pai ta on, Jorgim! O Apollo Playground não existe mais. As queries e mutations agora precisam ser testadas no Apollo Sandbox.');
     });
 
     app.get('/favicon.ico', (req, res) => {
@@ -45,7 +43,7 @@ const startServer = async () => {
 
     db.once('open', async () => {
         await new Promise((resolve) => httpServer.listen({port: PORT}, resolve));
-        console.log(`Server ready at http://localhost:${PORT}/graphql`)
+        console.log(`Server ready at http://localhost:${PORT}/`)
     });    
 };
 
