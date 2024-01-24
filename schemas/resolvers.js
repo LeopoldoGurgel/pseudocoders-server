@@ -21,13 +21,13 @@ const resolvers = {
     },
     posts: async (parent, { author }) => {
       const params = author ? { author } : {};
-      return Post.find(params).sort({ createdAt: -1 });
+      return Post.find(params).sort({ createdAt: -1 }).populate('author');
     },
     post: async (parent, { postId }) => {
-      return Post.findOne({ _id: postId }).populate('comments');
+      return Post.findOne({ _id: postId }).populate('comments').populate('author');
     },
     comment: async (parent, {commentId}) => {        
-        return Comment.findOne({_id: commentId}).populate('comments');
+        return Comment.findOne({_id: commentId}).populate('comments').populate('author');
     },
     me: async (parent, args, context) => {
       if (context.user) {
