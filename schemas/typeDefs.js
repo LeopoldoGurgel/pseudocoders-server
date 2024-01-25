@@ -1,4 +1,4 @@
-const typeDefs = gql`
+const typeDefs = `
 
 
   type User {
@@ -13,7 +13,7 @@ const typeDefs = gql`
     _id: ID!
     content: String!
     comments: [Comment]
-    author: ID!
+    author: ID
     createdAt: String!
   }
 
@@ -27,7 +27,7 @@ const typeDefs = gql`
     title: String!
     content: String!
     comments: [Comment]
-    author: ID!
+    author: ID
     createdAt: String!
   }
 
