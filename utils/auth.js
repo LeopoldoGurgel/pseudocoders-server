@@ -28,6 +28,8 @@ module.exports = {
       console.log('Invalid token');
     }
 
+    console.log(token);
+
     return req;
   },
   signToken: function ({ email, name, _id, verified }) {

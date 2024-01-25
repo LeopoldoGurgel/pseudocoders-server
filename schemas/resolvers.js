@@ -17,18 +17,19 @@ const resolvers = {
       }      
     },
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId }).populate('posts');
+      const user = User.findOne({ _id: userId }).populate('posts');      
+      return user;
     },
     posts: async (parent, { author }) => {
       const params = author ? { author } : {};
       return Post.find(params).sort({ createdAt: -1 }).populate('author').populate('comments')
     },
     post: async (parent, { postId }) => {
-      return Post.findOne({ _id: postId }).populate('comments').populate('author');
+      return Post.findOne({ _id: postId }).populate('comments');
     },
     comment: async (parent, {commentId}) => {        
-        return Comment.findOne({_id: commentId}).populate('comments').populate('author');
-    },
+      return Comment.findOne({_id: commentId}).populate('comments');
+  },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('posts');
