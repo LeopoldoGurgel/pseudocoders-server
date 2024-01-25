@@ -21,7 +21,7 @@ const resolvers = {
     },
     posts: async (parent, { author }) => {
       const params = author ? { author } : {};
-      return Post.find(params).sort({ createdAt: -1 }).populate('author')
+      return Post.find(params).sort({ createdAt: -1 }).populate('author').populate('comments')
     },
     post: async (parent, { postId }) => {
       return Post.findOne({ _id: postId }).populate('comments').populate('author');
