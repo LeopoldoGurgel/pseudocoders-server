@@ -7,13 +7,19 @@ const db = require('./config/connection');
 const cors = require('cors');
 const { authMiddleware } = require('./utils/auth');
 const http = require('http');
+const { ApolloServerPluginLandingPageLocalDefault } = require("@apollo/server/plugin/landingPage/default");
 
 const app = express();
 httpServer = http.createServer(app);
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    plugins: [
+        ApolloServerPluginDrainHttpServer({ httpServer }),
+        ApolloServerPluginLandingPageLocalDefault({
+            embed: true,
+          }),
+    ],
   });
 const PORT = process.env.PORT || 3000;
 
