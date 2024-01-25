@@ -13,7 +13,7 @@ const typeDefs = `
     _id: ID!
     content: String!
     comments: [Comment]
-    author: String
+    author: ID
     createdAt: String!
   }
 
@@ -27,7 +27,7 @@ const typeDefs = `
     title: String!
     content: String!
     comments: [Comment]
-    author: String
+    author: ID
     createdAt: String!
   }
 
