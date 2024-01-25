@@ -17,17 +17,32 @@ const resolvers = {
       }      
     },
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId }).populate('posts');
+      const user = User.findOne({ _id: userId }).populate('posts');      
+      return user;
     },
     posts: async (parent, { author }) => {
       const params = author ? { author } : {};
-      return Post.find(params).sort({ createdAt: -1 });
+
+      const posts = Post.find(params).sort({ createdAt: -1 }).populate('author', 'name');
+
+      return posts.map(post => {
+        return {
+          ...post.toObject(),
+          author: post.author ? post.author.name : 'Unknown Author'
+        }
+      })
     },
     post: async (parent, { postId }) => {
-      return Post.findOne({ _id: postId }).populate('comments');
+      const post = Post.findOne({ _id: postId }).populate('comments');
+      const user = User.findOne({ _id: post.author });
+      post.author = user.name;
+      return post;
     },
-    comment: async (parent, {commentId}) => {        
-        return Comment.findOne({_id: commentId}).populate('comments');
+    comment: async (parent, {commentId}) => {  
+        const comment = Comment.findOne({_id: commentId}).populate('comments');
+        const user = User.findOne({_id: comment.author});
+        comment.author = user.name      
+        return comment;
     },
     me: async (parent, args, context) => {
       if (context.user) {
