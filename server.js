@@ -29,7 +29,7 @@ const startServer = async () => {
     app.use(
         '/graphql',
         cors({
-            origin: 'https://leopoldogurgel.github.io/pseudocoders/'
+            origin: 'https://leopoldogurgel.github.io'
         }),
         express.json(),
         expressMiddleware(server, {
